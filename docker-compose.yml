@@ -1,110 +1,94 @@
+version: '3.8'
+
 services:
-    laravel.test:
-        build:
-            context: ./vendor/laravel/sail/runtimes/8.2
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-8.2/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        ports:
-            - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
-        environment:
-            WWWUSER: '${WWWUSER}'
-            LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-            IGNITION_LOCAL_SITES_PATH: '${PWD}'
-        volumes:
-            - '.:/var/www/html'
+    ECommerce:
+        image: kooldev/php:8.1
+        container_name: php
+        working_dir: /ECommerce
+        restart: always
         networks:
-            - sail
+            - internal
+            - nginx_network
+        volumes:
+            - '.:/ECommerce'
+            - './docker/php/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini'
+        links:
+            - ECommerce-database
         depends_on:
-            - mysql
-            - redis
-            - meilisearch
-            - mailpit
-            - selenium
-    mysql:
-        image: 'mysql/mysql-server:8.0'
-        ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
-        environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: '%'
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ALLOW_EMPTY_PASSWORD: 1
-        volumes:
-            - 'sail-mysql:/var/lib/mysql'
-            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+            - ECommerce-database
+    ECommerce-nginx:
+        image: nginx:alpine
+        container_name: nginx
+        restart: always
+        working_dir: /ECommerce
         networks:
-            - sail
-        healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
-            retries: 3
-            timeout: 5s
-    redis:
+            - internal
+            - nginx_network
+        ports:
+            - "9002:80"
+        volumes:
+            - .:/ECommerce
+            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - ECommerce
+    ECommerce-composer:
+        image: composer:latest
+        container_name: composer
+        working_dir: /ECommerce
+        command: update --ignore-platform-reqs
+        volumes:
+            - .:/ECommerce
+        restart: on-failure
+        depends_on:
+            - ECommerce
+    ECommerce-database:
+        image: mariadb:latest
+        restart: always
+        container_name: database
+        working_dir: /ECommerce
+        networks:
+            - internal
+            - nginx_network
+        command: mysqld --skip-grant-tables
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=ECommerce
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=password
+        volumes:
+            - .:/ECommerce
+            - ./ECommerce-database:/var/lib/mysql
+        ports:
+            - '8000:3306'
+    ECommerce-redis:
         image: 'redis:alpine'
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
-            - 'sail-redis:/data'
+            - ECommerce-redis:/data
         networks:
-            - sail
-        healthcheck:
-            test:
-                - CMD
-                - redis-cli
-                - ping
-            retries: 3
-            timeout: 5s
-    meilisearch:
-        image: 'getmeili/meilisearch:latest'
-        ports:
-            - '${FORWARD_MEILISEARCH_PORT:-7700}:7700'
+            - internal
+            - nginx_network
+        command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+
+    ECommerce-npm:
+        image: node:14-alpine
+        container_name: ECommerce-npm
+        working_dir: /ECommerce
         volumes:
-            - 'sail-meilisearch:/meili_data'
-        networks:
-            - sail
-        healthcheck:
-            test:
-                - CMD
-                - wget
-                - '--no-verbose'
-                - '--spider'
-                - 'http://localhost:7700/health'
-            retries: 3
-            timeout: 5s
-    mailpit:
-        image: 'axllent/mailpit:latest'
-        ports:
-            - '${FORWARD_MAILPIT_PORT:-1025}:1025'
-            - '${FORWARD_MAILPIT_DASHBOARD_PORT:-8025}:8025'
-        networks:
-            - sail
-    selenium:
-        image: seleniarm/standalone-chromium
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        volumes:
-            - '/dev/shm:/dev/shm'
-        networks:
-            - sail
+            - '.:/ECommerce'
+        depends_on:
+            - ECommerce
+
 networks:
-    sail:
-        driver: bridge
+    nginx_network:
+        external: true
+    internal:
+        driver: overlay
+        name: 'global'
+        attachable: true
 volumes:
-    sail-mysql:
+    ECommerce-database:
         driver: local
-    sail-redis:
-        driver: local
-    sail-meilisearch:
+    ECommerce-redis:
         driver: local
