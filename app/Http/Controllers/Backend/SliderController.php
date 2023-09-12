@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 
 class SliderController extends Controller
@@ -20,7 +21,7 @@ class SliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.slider.create');
     }
 
     /**
@@ -28,7 +29,29 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // 'banner' => ['required', 'image', 'max:2000'],
+            'type' => ['string', 'max:2000'],
+            'title' => ['required', 'max:2000'],
+            'starting_price' => ['max:2000'],
+            'btn_url' => ['url'],
+            'serial' => ['required'],
+            'status' => ['required']
+        ]);
+
+        $slider = new Slider();
+        // $slider->banner = $request->banner;
+        $slider->type = $request->type;
+        $slider->title = $request->title;
+        $slider->starting_price = $request->starting_price;
+        $slider->btn_url = $request->btn_url;
+        $slider->serial = $request->serial;
+        $slider->status = $request->status;
+        $slider->save();
+
+        toastr('Created successfully!', 'success');
+
+        return redirect()->back();
     }
 
     /**
