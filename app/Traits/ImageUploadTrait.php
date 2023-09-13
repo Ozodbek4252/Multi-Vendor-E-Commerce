@@ -19,7 +19,7 @@ trait ImageUploadTrait
 
             $path = '/uploads/' . $imageName;
 
-            return $path . '/' . $imageName;
+            return $path;
         }
     }
 }
