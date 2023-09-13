@@ -58,7 +58,7 @@ class SliderController extends Controller
 
         toastr('Created successfully!', 'success');
 
-        return redirect()->back();
+        return redirect()->route('admin.slider.index');
     }
 
     /**
@@ -98,7 +98,7 @@ class SliderController extends Controller
         /** Handle file upload */
         $imagePath = $this->updateImage($request, 'banner', 'uploads', $slider->banner);
 
-        $slider->banner = $imagePath;
+        $slider->banner = empty(!$imagePath) ? $imagePath : $slider->banner;
         $slider->type = $request->type;
         $slider->title = $request->title;
         $slider->starting_price = $request->starting_price;
@@ -117,6 +117,10 @@ class SliderController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+        $this->deleteImage($slider->banner);
+        $slider->delete();
+
+        return response(['status' => 'success', 'message' => 'Deleted successfully!']);
     }
 }
