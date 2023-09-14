@@ -14,11 +14,12 @@
 
                         </div>
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{route('admin.category.store')}}" method="POST">
+                                @csrf
                                 <div class="form-group">
                                     <label for="icon">Icon</label>
                                     <div>
-                                        <button class="btnt btn-primary" data-selected-class="btn-danger"
+                                        <button name="icon" class="btnt btn-primary" data-selected-class="btn-danger"
                                         role="iconpicker" data-unselected-class="btn-info"></button>
                                     </div>
                                 </div>
