@@ -18,3 +18,4 @@ yarn-error.log
 /.idea
 /.vscode
 /ECommerce-database
+.DS_Store
