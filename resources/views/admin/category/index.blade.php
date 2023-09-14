@@ -12,14 +12,15 @@
                         <div class="card-header">
                             <h4>All Categories</h4>
                             <div class="card-header-action">
-                                <a href="{{ route('admin.category.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Create New</a>
+                                <a href="{{ route('admin.category.create') }}" class="btn btn-primary"><i
+                                        class="fas fa-plus"></i> Create New</a>
                             </div>
                         </div>
                         <div class="card-body">
 
                         </div>
                         <div class="card-footer text-right">
-                            {{ $dataTable->table() }}
+                            {{ $dataTable->table(['style' => 'text-align: left;']) }}
                         </div>
                     </div>
                 </div>
