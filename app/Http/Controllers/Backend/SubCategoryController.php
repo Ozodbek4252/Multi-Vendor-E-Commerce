@@ -64,7 +64,9 @@ class SubCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categories = Category::all();
+        $subCategory = SubCategory::findOrFail($id);
+        return view('admin.sub-category.edit', compact('categories', 'subCategory'));
     }
 
     /**
@@ -72,7 +74,22 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'category_id' => ['required'],
+            'name' => ['required', 'max:200', 'unique:sub_categories,name,' . $id],
+            'status' => ['required']
+        ]);
+
+        $subCategory = SubCategory::findOrFail($id);
+        $subCategory->category_id = $request->category_id;
+        $subCategory->name = $request->name;
+        $subCategory->slug = Str::slug($request->name);
+        $subCategory->status = $request->status;
+        $subCategory->save();
+
+        toastr('Updated successfully!', 'success');
+
+        return redirect()->route('admin.sub-category.index');
     }
 
     /**
