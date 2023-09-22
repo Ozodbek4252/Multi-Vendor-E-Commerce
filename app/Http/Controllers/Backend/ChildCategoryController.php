@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\DataTables\ChildCategoryDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ChildCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ChildCategoryController extends Controller
 {
@@ -32,7 +34,24 @@ class ChildCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_id' => ['required'],
+            'sub_category_id' => ['required'],
+            'name' => ['required', 'max:200', 'unique:child_categories,name'],
+            'status' => ['required']
+        ]);
+
+        $childCategory = new ChildCategory();
+        $childCategory->category_id = $request->category_id;
+        $childCategory->sub_category_id = $request->sub_category_id;
+        $childCategory->name = $request->name;
+        $childCategory->slug = Str::slug($request->name);
+        $childCategory->status = $request->status;
+        $childCategory->save();
+
+        toastr('Created successfully!', 'success');
+
+        return redirect()->route('admin.child-category.index');
     }
 
     /**
