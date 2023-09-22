@@ -19,7 +19,7 @@
                                 @method('PUT')
 
                                 <div class="form-group">
-                                    <label for="status">Category</label>
+                                    <label for="category_id">Category</label>
                                     <select name="category_id" id="category_id" class="form-control">
                                         <option value="">Select</option>
                                         @foreach ($categories as $category)
