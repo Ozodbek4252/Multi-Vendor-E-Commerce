@@ -117,4 +117,13 @@ class ChildCategoryController extends Controller
         $subCategories = SubCategory::where('category_id', $request->id)->where('status', 1)->get();
         return $subCategories;
     }
+
+    public function changeStatus(Request $request)
+    {
+        $childCategory = ChildCategory::findOrFail($request->id);
+        $childCategory->status = $request->status == 'true' ? 1 : 0;
+        $childCategory->save();
+
+        return response(['message' => 'Status has been updated!']);
+    }
 }
