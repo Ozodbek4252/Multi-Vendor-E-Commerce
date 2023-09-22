@@ -74,6 +74,7 @@
                                 Swal.fire(
                                     'Cannot delete!',
                                     data.message,
+                                    'error'
                                 )
                             }
 
