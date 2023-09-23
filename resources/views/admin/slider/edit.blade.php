@@ -20,7 +20,6 @@
                                 <div class="form-group">
                                     <label for="">Preview</label>
                                     <br>
-
                                     <img width="200px"
                                         src="{{ $slider->banner ? asset($slider->banner) : asset('backend/assets/img/pngtree-vector-picture-icon-png-image_4013511.jpg') }}">
                                 </div>
