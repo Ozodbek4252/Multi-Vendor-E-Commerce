@@ -20,7 +20,7 @@ class AdminProfileSeeder extends Seeder
         $vendor->banner = '/uploads/vendors/vendor.jpg';
         $vendor->phone = '998944424252';
         $vendor->email = $user->email;
-        $vendor->address = 'Tashnekt, Uzbekistan';
+        $vendor->address = 'Tashkent, Uzbekistan';
         $vendor->description = 'Welcome to Vortex, your trusted destination for premium
             products and exceptional service. With a curated selection of top-quality items,
             we strive to bring you the best in fashion, electronics, home goods, and more.

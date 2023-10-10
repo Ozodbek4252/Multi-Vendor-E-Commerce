@@ -93,9 +93,9 @@ class BrandSeeder extends Seeder
         ]);
 
         Brand::create([
-            'logo' => '/uploads/brands/startbucks.png',
-            'name' => 'Startbucks',
-            'slug' => 'startbucks',
+            'logo' => '/uploads/brands/starbucks.png',
+            'name' => 'Starbucks',
+            'slug' => 'starbucks',
             'is_featured' => 1,
             'status' => 1,
         ]);

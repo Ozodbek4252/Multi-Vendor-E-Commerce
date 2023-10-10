@@ -92,7 +92,7 @@ class BrandDataTable extends DataTable
     {
         return [
             Column::make('id')->width(100),
-            Column::make('logo')->width(200),
+            Column::make('logo')->width(120),
             Column::make('name'),
             Column::make('is_featured')->width(150),
             Column::make('status')->width(150),

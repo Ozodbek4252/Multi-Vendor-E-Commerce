@@ -96,7 +96,7 @@ class SliderController extends Controller
         $slider = Slider::findOrFail($id);
 
         /** Handle file upload */
-        $imagePath = $this->updateImage($request, 'banner', 'uploads', $slider->banner);
+        $imagePath = $this->updateImage($request, 'banner', 'uploads/banners/', $slider->banner);
 
         $slider->banner = empty(!$imagePath) ? $imagePath : $slider->banner;
         $slider->type = $request->type;

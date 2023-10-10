@@ -34,7 +34,7 @@ trait ImageUploadTrait
 
             $image->move(public_path($path), $imageName);
 
-            return '/uploads/' . $imageName;
+            return $path . $imageName;
         }
     }
 
