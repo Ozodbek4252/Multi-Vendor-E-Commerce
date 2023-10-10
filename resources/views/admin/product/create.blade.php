@@ -49,8 +49,8 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="chil_category">Child Category</label>
-                                            <select name="chil_category_id" id="chil_category"
+                                            <label for="child_category">Child Category</label>
+                                            <select name="child_category_id" id="child_category"
                                                 class="form-control child-category">
                                                 <option value="">Select</option>
                                             </select>
