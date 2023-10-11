@@ -10,6 +10,7 @@ use App\Models\ChildCategory;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Traits\ImageUploadTrait;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -37,11 +38,15 @@ class ProductController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         try {
             DB::beginTransaction();
+
             $request->validate(
                 [
                     'image' => 'required|image|max:3000',
@@ -58,35 +63,33 @@ class ProductController extends Controller
                 ]
             );
 
-            // Handdle image
-            $imagePath = $this->uploadImage($request, 'image', 'uploads/products/');
+            // Upload and handle the product image
+            $imagePath = $this->uploadImage($request, 'image', '/uploads/products/');
 
-            $product = new Product();
-            $product->thumb_image = $imagePath;
-            $product->name = $request->name;
-            $product->slug = Str::slug($request->name);
-            $product->vendor_id = auth()->user()->vendor->id;
-            $product->category_id = $request->category_id;
-            $product->sub_category_id = $request->sub_category_id;
-            $product->child_category_id = $request->child_category_id;
-            $product->brand_id = $request->brand_id;
-            $product->sku = $request->sku;
-            $product->price = $request->price;
-            $product->video_link = $request->video_link;
-            $product->offer_price = $request->offer_price;
-            $product->offer_start_date = $request->offer_start_date;
-            $product->offer_end_date = $request->offer_end_date;
-            $product->qty = $request->qty;
-            $product->short_description = $request->short_description;
-            $product->long_description = $request->long_description;
-            $product->is_top = $request->is_top;
-            $product->is_best = $request->is_best;
-            $product->is_featured = $request->is_featured;
-            $product->status = $request->status;
-            $product->is_approved = 1;
-            $product->seo_title = $request->seo_title;
-            $product->seo_description = $request->seo_description;
-            $product->save();
+            Product::create([
+                'thumb_image' => $imagePath,
+                'name' => $request->name,
+                'slug' => Str::slug($request->name),
+                'vendor_id' => auth()->user()->vendor->id,
+                'category_id' => $request->category_id,
+                'sub_category_id' => $request->sub_category_id,
+                'child_category_id' => $request->child_category_id,
+                'brand_id' => $request->brand_id,
+                'sku' => $request->sku,
+                'price' => $request->price,
+                'video_link' => $request->video_link,
+                'offer_price' => $request->offer_price,
+                'offer_start_date' => $request->offer_start_date,
+                'offer_end_date' => $request->offer_end_date,
+                'qty' => $request->qty,
+                'short_description' => $request->short_description,
+                'long_description' => $request->long_description,
+                'product_type' => $request->product_type,
+                'status' => $request->status,
+                'is_approved' => 1,
+                'seo_title' => $request->seo_title,
+                'seo_description' => $request->seo_description,
+            ]);
 
             toastr('Product created successfully', 'success');
 
