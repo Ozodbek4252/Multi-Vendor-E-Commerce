@@ -40,7 +40,7 @@ class ProductDataTable extends DataTable
                             style="position: absolute; transform: translate3d(0px, 28px, 0px);
                             top: 0px; left: 0px; will-change: transform;">
                             <a class="dropdown-item has-icon" href="' . route('admin.products-image-gallery.index', ['product' => $query->id]) .  '"><i class="far fa-heart"></i>Image Gallery</a>
-                            <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i>Edit</a>
+                            <a class="dropdown-item has-icon" href="' . route('admin.products-variant.index') . '"><i class="far fa-heart"></i>Variants</a>
                             <a class="dropdown-item has-icon" href="#"><i class="far fa-heart"></i>Delete</a>
                         </div>
                     </div>
