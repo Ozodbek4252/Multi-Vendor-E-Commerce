@@ -346,5 +346,274 @@ class ChildCategorySeeder extends Seeder
             'slug' => "board-edge-pen",
             'status' => 1,
         ]);
+
+
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Men\'s Clothing')->first()->id,
+            'name' => "T-Shirts",
+            'slug' => "t-shirts",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Men\'s Clothing')->first()->id,
+            'name' => "T-Shirts",
+            'slug' => "t-shirts",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Men\'s Clothing')->first()->id,
+            'name' => "Shirts",
+            'slug' => "shirts",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Men\'s Clothing')->first()->id,
+            'name' => "Jeans",
+            'slug' => "jeans",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Men\'s Clothing')->first()->id,
+            'name' => "Jackets",
+            'slug' => "jackets",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Men\'s Clothing')->first()->id,
+            'name' => "Suits",
+            'slug' => "suits",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Men\'s Clothing')->first()->id,
+            'name' => "Activewear",
+            'slug' => "activewear",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Women\'s Clothing')->first()->id,
+            'name' => "Dresses",
+            'slug' => "dresses",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Women\'s Clothing')->first()->id,
+            'name' => "Tops",
+            'slug' => "tops",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Women\'s Clothing')->first()->id,
+            'name' => "Skirts",
+            'slug' => "skirts",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Women\'s Clothing')->first()->id,
+            'name' => "Pants",
+            'slug' => "pants",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Women\'s Clothing')->first()->id,
+            'name' => "Outerwear",
+            'slug' => "outerwear",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Women\'s Clothing')->first()->id,
+            'name' => "Lingerie",
+            'slug' => "lingerie",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Kids\' Clothing')->first()->id,
+            'name' => "Boys' Apparel",
+            'slug' => "boys'-apparel",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Kids\' Clothing')->first()->id,
+            'name' => "Girls' Apparel",
+            'slug' => "girls'-apparel",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Kids\' Clothing')->first()->id,
+            'name' => "Baby Clothing",
+            'slug' => "baby-clothing",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Footwear')->first()->id,
+            'name' => "Men's Shoes",
+            'slug' => "men's-shoes",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Footwear')->first()->id,
+            'name' => "Women's Shoes",
+            'slug' => "women's-shoes",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Footwear')->first()->id,
+            'name' => "Kids' Shoes",
+            'slug' => "kids'-shoes",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Footwear')->first()->id,
+            'name' => "Sneakers",
+            'slug' => "sneakers",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Footwear')->first()->id,
+            'name' => "Boots",
+            'slug' => "boots",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Accessories')->first()->id,
+            'name' => "Bags & Purses",
+            'slug' => "bags-&-purses",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Accessories')->first()->id,
+            'name' => "Watches",
+            'slug' => "watches",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Accessories')->first()->id,
+            'name' => "Jewelry",
+            'slug' => "jewelry",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Accessories')->first()->id,
+            'name' => "Sunglasses",
+            'slug' => "sunglasses",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Accessories')->first()->id,
+            'name' => "Hats",
+            'slug' => "hats",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Beauty & Cosmetics')->first()->id,
+            'name' => "Makeup",
+            'slug' => "makeup",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Beauty & Cosmetics')->first()->id,
+            'name' => "Skincare",
+            'slug' => "skincare",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Beauty & Cosmetics')->first()->id,
+            'name' => "Fragrances",
+            'slug' => "fragrances",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Beauty & Cosmetics')->first()->id,
+            'name' => "Haircare",
+            'slug' => "haircare",
+            'status' => 1,
+        ]);
+
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Smartphones & Accessories')->first()->id,
+            'name' => "Smartphones",
+            'slug' => "smartphones",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Smartphones & Accessories')->first()->id,
+            'name' => "Phone Cases",
+            'slug' => "phone-cases",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Smartphones & Accessories')->first()->id,
+            'name' => "Chargers & Cables",
+            'slug' => "chargers-&-cables",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Smartphones & Accessories')->first()->id,
+            'name' => "Screen Protectors",
+            'slug' => "screen-protectors",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Computers & Laptops')->first()->id,
+            'name' => "Laptops",
+            'slug' => "laptops",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Computers & Laptops')->first()->id,
+            'name' => "Desktop Computers",
+            'slug' => "desktop-computers",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Computers & Laptops')->first()->id,
+            'name' => "Computer Accessories",
+            'slug' => "computer-accessories",
+            'status' => 1,
+        ]);
+        ChildCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'sub_category_id' => SubCategory::where('name', 'Computers & Laptops')->first()->id,
+            'name' => "Printers & Scanners",
+            'slug' => "printers-&-scanners",
+            'status' => 1,
+        ]);
     }
 }

@@ -31,6 +31,18 @@ class CategorySeeder extends Seeder
             'status' => 1,
         ]);
         Category::create([
+            'name' => "Fashion",
+            'slug' => "fashion",
+            'icon' => 'fas fa-tshirt',
+            'status' => 1,
+        ]);
+        Category::create([
+            'name' => "Electronics",
+            'slug' => "electronics",
+            'icon' => 'fas fa-laptop',
+            'status' => 1,
+        ]);
+        Category::create([
             'name' => "Drinks",
             'slug' => "drinks",
             'icon' => 'fas fa-glass-martini-alt',

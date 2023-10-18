@@ -75,12 +75,89 @@ class SubCategorySeeder extends Seeder
             'slug' => "gym",
             'status' => 1,
         ]);
+
+
         SubCategory::create([
-            'category_id' => Category::where('name', 'Sport')->first()->id,
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Men's Clothing",
+            'slug' => "Men-s-Clothing",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Women's Clothing",
+            'slug' => "Women-s-Clothing",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Kids' Clothing",
+            'slug' => "Kids-Clothing",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
             'name' => "Footwear",
             'slug' => "footwear",
             'status' => 1,
         ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Accessories",
+            'slug' => "accessories",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Beauty & Cosmetics",
+            'slug' => "beauty-&-cosmetics",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Plus Size",
+            'slug' => "plus-size",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Vintage & Thrift",
+            'slug' => "vintage-&-thrift",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Fashion')->first()->id,
+            'name' => "Uniforms & Workwear",
+            'slug' => "uniforms-&-workwear",
+            'status' => 1,
+        ]);
+
+
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'name' => "Smartphones & Accessories",
+            'slug' => "smartphones-&-accessories",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'name' => "Computers & Laptops",
+            'slug' => "computers-&-laptops",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'name' => "Audio & Headphoness",
+            'slug' => "audio-&-headphones",
+            'status' => 1,
+        ]);
+        SubCategory::create([
+            'category_id' => Category::where('name', 'Electronics')->first()->id,
+            'name' => "Cameras & Photography",
+            'slug' => "cameras-&-photography",
+            'status' => 1,
+        ]);
+
 
         SubCategory::create([
             'category_id' => Category::where('name', 'Drinks')->first()->id,
