@@ -9,6 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    // product type
+    // "new_arrival"
+    // "featured_product"
+    // "top_product"
+    // "best_product"
+
     protected $fillable = [
         'name',
         'slug',
