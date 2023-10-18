@@ -5,6 +5,11 @@
             <h1>Product Image Gallery </h1>
         </div>
 
+        <div class="mb-3">
+            <a class="btn btn-primary" href="{{ route('admin.products.index') }}">
+                Back
+            </a>
+        </div>
         <div class="section-body">
             <div class="row">
                 <div class="col-12">
