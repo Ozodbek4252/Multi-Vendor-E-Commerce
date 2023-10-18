@@ -41,7 +41,7 @@
 
                         </div>
                         <div class="card-footer text-right">
-                            {{ $dataTable->table() }}
+                            {{ $dataTable->table(['style' => 'text-align: left;']) }}
                         </div>
                     </div>
                 </div>

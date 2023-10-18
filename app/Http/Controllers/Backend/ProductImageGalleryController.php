@@ -41,7 +41,7 @@ class ProductImageGalleryController extends Controller
         ]);
 
         /** Handle images upload **/
-        $imagePaths = $this->uploadMultipleImage($request, 'image', 'uploads/products/');
+        $imagePaths = $this->uploadMultipleImage($request, 'image', '/uploads/products/');
 
         /** Save images in database **/
         foreach ($imagePaths as $imagePath) {
@@ -53,7 +53,7 @@ class ProductImageGalleryController extends Controller
 
         toastr('Product images added successfully');
 
-        return redirect()->back( );
+        return redirect()->back();
     }
 
     /**
@@ -85,6 +85,11 @@ class ProductImageGalleryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $productImageGallery = ProductImageGallery::findOrFail($id);
+
+        $this->deleteImage($productImageGallery->image);
+        $productImageGallery->delete();
+
+        return response(['status' => 'success', 'message' => 'Deleted successfully']);
     }
 }

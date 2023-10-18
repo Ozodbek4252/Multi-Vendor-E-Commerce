@@ -22,7 +22,14 @@ class ProductImageGalleryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'productimagegallery.action')
+            ->addColumn('action', function ($query) {
+                $deleteBtn = "<a href='" . route('admin.products-image-gallery.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+                return $deleteBtn;
+            })
+            ->addColumn('image', function ($query) {
+                return "<img width='100px' src='" . asset($query->image) . "'></img>";
+            })
+            ->rawColumns(['action', 'image'])
             ->setRowId('id');
     }
 
@@ -40,20 +47,20 @@ class ProductImageGalleryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('productimagegallery-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('productimagegallery-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +69,13 @@ class ProductImageGalleryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id')->width(100),
+            Column::make('image'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(400)
+                ->addClass('text-center'),
         ];
     }
 
