@@ -56,5 +56,6 @@ Route::resource('products', ProductController::class);
 Route::resource('products-image-gallery', ProductImageGalleryController::class);
 
 /** Product Variant Routes */
+Route::put('products-variant/change-status', [ProductVariantController::class, 'changeStatus'])->name('products-variant.change-status');
 Route::resource('products-variant', ProductVariantController::class);
 
