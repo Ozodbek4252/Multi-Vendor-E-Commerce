@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'name' => 'Laptop Dell XPS 13',
             'slug' => 'laptop-dell-xps-13',
-            'thumb_image' => '/uploads/products/Laptop_Dell_XPS_13.avif',
+            'thumb_image' => '/uploads/products/Laptop_Dell_XPS_13.jpeg',
             'vendor_id' => 1,
             'category_id' => Category::where('name', 'Electronics')->first()->id,
             'sub_category_id' => SubCategory::where('name', 'Computers & Laptops')->first()->id,
