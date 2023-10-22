@@ -84,8 +84,18 @@ class ProductVariantItemController extends Controller
         $variantItem = ProductVariantItem::findOrFail($id);
         $variantItem->delete();
 
-        toastr('Deleted successfully', 'success', 'success');
+        return response([
+            'status' => 'success',
+            'message' => 'Deleted successfully',
+        ]);
+    }
 
-        return redirect()->back();
+    public function changeStatus(Request $request)
+    {
+        $variantItem = ProductVariantItem::findOrFail($request->id);
+        $variantItem->status = $request->status == 'true' ? 1 : 0;
+        $variantItem->save();
+
+        return response(['message' => 'Status has been updated!']);
     }
 }

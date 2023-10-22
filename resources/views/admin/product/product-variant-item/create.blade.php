@@ -40,9 +40,8 @@
                                 <div class="form-group">
                                     <label for="is_default">Is Default</label>
                                     <select name="is_default" id="is_default" class="form-control">
-                                        <option value="">Select</option>
-                                        <option value="1">Yes</option>
                                         <option value="0">No</option>
+                                        <option value="1">Yes</option>
                                     </select>
                                 </div>
 

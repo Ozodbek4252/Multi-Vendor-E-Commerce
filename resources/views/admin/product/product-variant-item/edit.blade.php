@@ -39,7 +39,6 @@
                                 <div class="form-group">
                                     <label for="is_default">Is Default</label>
                                     <select name="is_default" id="is_default" class="form-control">
-                                        <option value="">Select</option>
                                         <option {{ $variantItem->is_default == 1 ? 'selected' : ''}} value="1">Yes</option>
                                         <option {{ $variantItem->is_default == 0 ? 'selected' : ''}} value="0">No</option>
                                     </select>
