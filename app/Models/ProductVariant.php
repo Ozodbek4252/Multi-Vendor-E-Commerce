@@ -14,4 +14,14 @@ class ProductVariant extends Model
         'name',
         'status',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function productVariantItems()
+    {
+        return $this->hasMany(ProductVariantItem::class);
+    }
 }

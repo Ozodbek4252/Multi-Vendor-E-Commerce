@@ -38,4 +38,9 @@ class Product extends Model
         'seo_description',
         'status',
     ];
+
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
 }

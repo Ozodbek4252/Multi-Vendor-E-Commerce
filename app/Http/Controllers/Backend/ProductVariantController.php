@@ -87,6 +87,16 @@ class ProductVariantController extends Controller
     public function destroy(string $id)
     {
         $productVariant = ProductVariant::findOrFail($id);
+
+        $variantItemCheck = $productVariant->productVariantItems()->count();
+
+        if ($variantItemCheck > 0) {
+            return response([
+                'status' => 'error',
+                'message' => 'This variant contains variant items. Please delete them first.',
+            ]);
+        }
+
         $productVariant->delete();
 
         return response([
