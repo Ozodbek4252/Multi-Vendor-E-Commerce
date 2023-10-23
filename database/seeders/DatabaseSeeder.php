@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
             // product relared seeders
             ProductSeeder::class,
             VariantSeeder::class,
+
+            // vendor related seeders
+            VendorShopProfileSeeder::class,
         ]);
     }
 }

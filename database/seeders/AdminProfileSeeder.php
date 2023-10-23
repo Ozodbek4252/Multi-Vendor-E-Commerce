@@ -17,17 +17,11 @@ class AdminProfileSeeder extends Seeder
         $user = User::where('email', 'ozodbek1111@gmail.com')->first();
 
         $vendor = new Vendor();
-        $vendor->banner = '/uploads/vendors/vendor.jpg';
+        $vendor->banner = '/uploads/vendors/vendor-2.jpg';
         $vendor->phone = '998944424252';
         $vendor->email = $user->email;
         $vendor->address = 'Tashkent, Uzbekistan';
-        $vendor->description = 'Welcome to Vortex, your trusted destination for premium
-            products and exceptional service. With a curated selection of top-quality items,
-            we strive to bring you the best in fashion, electronics, home goods, and more.
-            Our mission is to provide a seamless shopping experience, from browsing our
-            extensive catalog to swift and secure delivery to your doorstep. Discover
-            convenience, quality, and style with Vortex, your go-to online shopping
-            destination.';
+        $vendor->description = 'Welcome to Vortex, your trusted destination for premium products and exceptional service. With a curated selection of top-quality items, we strive to bring you the best in fashion, electronics, home goods, and more. Our mission is to provide a seamless shopping experience, from browsing our extensive catalog to swift and secure delivery to your doorstep. Discover convenience, quality, and style with Vortex, your go-to online shopping destination.';
         $vendor->user_id = $user->id;
         $vendor->save();
     }
