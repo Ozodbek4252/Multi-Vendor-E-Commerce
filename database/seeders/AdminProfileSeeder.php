@@ -17,6 +17,7 @@ class AdminProfileSeeder extends Seeder
         $user = User::where('email', 'ozodbek1111@gmail.com')->first();
 
         $vendor = new Vendor();
+        $vendor->shop_name = 'Vortex';
         $vendor->banner = '/uploads/vendors/vendor-2.jpg';
         $vendor->phone = '998944424252';
         $vendor->email = $user->email;

@@ -33,5 +33,13 @@
 <!--classycountdown js-->
 <script src="{{ asset('frontend/js/jquery.classycountdown.js') }}"></script>
 
+<script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
+
 <!--main/custom js-->
 <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+<script>
+    $('.summernote').summernote({
+        height: 200,
+    });
+</script>
