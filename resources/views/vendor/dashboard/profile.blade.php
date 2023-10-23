@@ -11,10 +11,11 @@
                         <form action="{{ route('vendor.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
+
                             <div class="col-md-12">
                                 <div class="col-md-2">
                                     <div class="wsus__dash_pro_img">
-                                        <img src="{{ auth()->user()->image ? asset(auth()->user()->image) : asset('frontend/images/user-regular-204.png') }}"
+                                        <img src="{{ auth()->user()->image ? asset(auth()->user()->image) : asset('backend/assets/img/avatar/avatar-1.png') }}"
                                             alt="img" class="img-fluid w-100">
                                         <input name="image" type="file">
                                     </div>
