@@ -22,7 +22,67 @@ class VendorProductDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'vendorproduct.action')
+            ->addColumn('action', function ($query) {
+                $editBtn = "<a href='" . route('admin.products.edit', $query->id) .
+                    "' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+
+                $deleteBtn = "<a href='" . route('admin.products.destroy', $query->id) .
+                    "' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
+
+                $moreBtn = '
+                    <div class="dropdown dropleft d-inline ml-1">
+                        <button class="btn btn-primary dropdown-toggle" type="button"
+                            id="dropdownMenuButton2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <div class="dropdown-menu" x-placement="bottom-start"
+                            style="position: absolute; transform: translate3d(0px, 28px, 0px);
+                            top: 0px; left: 0px; will-change: transform;">
+                            <a class="dropdown-item has-icon" href="' . route('admin.products-image-gallery.index', ['product_id' => $query->id]) .  '"><i class="far fa-heart"></i>Image Gallery</a>
+                            <a class="dropdown-item has-icon" href="' . route('admin.products-variant.index', ['product_id' => $query->id]) . '"><i class="far fa-heart"></i>Variants</a>
+                        </div>
+                    </div>
+                    ';
+                return $editBtn . $deleteBtn . $moreBtn;
+            })
+            ->addColumn('image', function ($query) {
+                return "<img width='100px' src='" . asset($query->thumb_image) . "'></img>";
+            })
+            ->addColumn('type', function ($query) {
+                switch ($query->product_type) {
+                    case 'new_arrival':
+                        return '<i class="badge bg-success">New Arrival</i>';
+                        break;
+                    case 'featured_product':
+                        return '<i class="badge bg-warning">Featured</i>';
+                        break;
+                    case 'top_product':
+                        return '<i class="badge bg-info">Top Product</i>';
+                        break;
+                    case 'best_product':
+                        return '<i class="badge bg-danger">Best Product</i>';
+                        break;
+                    default:
+                        return '<i class="badge bg-dark">None</i>';
+                        break;
+                }
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    $button = '<div class="form-check form-switch">
+                                <input type="checkbox" checked data-id="' . $query->id . '"
+                                class="form-check-input change-status" id="flexSwitchCheckDefault">
+                               </div>';
+                } else {
+                    $button = '<div class="form-check form-switch">
+                                <input type="checkbox" data-id="' . $query->id . '"
+                                class="form-check-input change-status" id="flexSwitchCheckDefault">
+                               </div>';
+                }
+                return $button;
+            })
+            ->rawColumns(['action', 'image', 'type', 'status'])
             ->setRowId('id');
     }
 
@@ -40,20 +100,20 @@ class VendorProductDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('vendorproduct-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('vendorproduct-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +122,17 @@ class VendorProductDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('image')->width(150),
+            Column::make('name'),
+            Column::make('price'),
+            Column::make('type')->width(100),
+            Column::make('status')->width(100),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
     }
 
