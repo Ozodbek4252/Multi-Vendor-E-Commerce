@@ -4,12 +4,11 @@ namespace App\DataTables;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class VendorProductDataTable extends DataTable
@@ -23,10 +22,10 @@ class VendorProductDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
-                $editBtn = "<a href='" . route('admin.products.edit', $query->id) .
+                $editBtn = "<a href='" . route('vendor.products.edit', $query->id) .
                     "' class='btn btn-primary'><i class='far fa-edit'></i></a>";
 
-                $deleteBtn = "<a href='" . route('admin.products.destroy', $query->id) .
+                $deleteBtn = "<a href='" . route('vendor.products.destroy', $query->id) .
                     "' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
 
                 $moreBtn = '
@@ -91,7 +90,7 @@ class VendorProductDataTable extends DataTable
      */
     public function query(Product $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('vendor_id', Auth::user()->vendor->id)->newQuery();
     }
 
     /**
