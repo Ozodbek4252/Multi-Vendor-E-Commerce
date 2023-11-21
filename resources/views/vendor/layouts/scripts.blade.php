@@ -36,7 +36,7 @@
 <script src="{{ asset('backend/assets/modules/summernote/summernote-bs4.js') }}"></script>
 <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
 <!--main/custom js-->
@@ -52,6 +52,61 @@
         },
         singleDatePicker: true,
     });
+</script>
+
+<!-- Dynamic Delete Alert -->
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('body').on('click', '.delete-item', function(event) {
+            event.preventDefault();
+
+            let deleteUrl = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: deleteUrl,
+
+                        success: function(data) {
+                            if (data.status == 'success') {
+                                Swal.fire(
+                                    'Deleted!',
+                                    data.message,
+                                )
+                                window.location.reload();
+                            } else if (data.status == 'error') {
+                                Swal.fire(
+                                    'Cannot delete!',
+                                    data.message,
+                                    'error'
+                                )
+                            }
+
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+
+                }
+            })
+        })
+    })
 </script>
 
 @stack('scripts')
