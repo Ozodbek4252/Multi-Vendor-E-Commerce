@@ -34,24 +34,22 @@ class VendorProductVariantItemDataTable extends DataTable
             })
             ->addColumn('is_default', function ($query) {
                 if ($query->is_default === 1) {
-                    return '<span class="badge badge-success">Yes</span>';
+                    return '<span class="badge bg-success">Yes</span>';
                 } else {
-                    return '<span class="badge badge-danger">No</span>';
+                    return '<span class="badge bg-danger">No</span>';
                 }
             })
             ->addColumn('status', function ($query) {
                 if ($query->status == 1) {
-                    $button = '<label class="custom-switch mt-2">
-                    <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
-                    <span class="custom-switch-indicator"></span>
-                    </label>
-                    ';
+                    $button = '<div class="form-check form-switch">
+                                <input type="checkbox" checked data-id="' . $query->id . '"
+                                class="form-check-input change-status" id="flexSwitchCheckDefault">
+                               </div>';
                 } else {
-                    $button = '<label class="custom-switch mt-2">
-                    <input type="checkbox" name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
-                    <span class="custom-switch-indicator"></span>
-                    </label>
-                    ';
+                    $button = '<div class="form-check form-switch">
+                                <input type="checkbox" data-id="' . $query->id . '"
+                                class="form-check-input change-status" id="flexSwitchCheckDefault">
+                               </div>';
                 }
                 return $button;
             })
@@ -64,7 +62,7 @@ class VendorProductVariantItemDataTable extends DataTable
      */
     public function query(ProductVariantItem $model): QueryBuilder
     {
-        return $model->where('product_variant_id', request()->variantId)->newQuery();
+        return $model->where('product_variant_id', request()->variant_id)->newQuery();
     }
 
     /**
