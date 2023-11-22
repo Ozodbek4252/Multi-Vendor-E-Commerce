@@ -5,6 +5,9 @@
             <div class="dashboard_content mt-2 mt-md-0">
                 <h3><i class="far fa-user"></i> Create Variant</h3>
                 <h6 class="mb-4">Product: {{ $product->name }}</h6>
+                <a href="{{ route('vendor.products-variant.index', ['product_id' => $product->id]) }}" class="btn btn-secondary mb-4">
+                    <i class="fas fa-long-arrow-left"></i> Back
+                </a>
                 <div class="wsus__dashboard_profile">
                     <div class="wsus__dash_pro_area">
 

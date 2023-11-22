@@ -20,7 +20,36 @@ class VendorProductVariantDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'vendorproductvariant.action')
+            ->addColumn('action', function ($query) {
+                $variantItems = "<a href='" . route(
+                    'admin.products-variant-item.index',
+                    ['productId' => request()->product_id, 'variantId' => $query->id]
+                ) .
+                    "' class='btn btn-info btn-space-right' style='color: #fff;'><i class='far fa-edit'></i> Variant Items</a>";
+
+                $editBtn = "<a href='" . route('admin.products-variant.edit', $query->id) .
+                    "' class='btn btn-primary'><i class='far fa-edit'></i></a>";
+
+                $deleteBtn = "<a href='" . route('admin.products-variant.destroy', $query->id) .
+                    "' class='btn btn-danger ml-2 delete-item'><i class='far fa-trash-alt'></i></a>";
+
+                return $variantItems . $editBtn . $deleteBtn;
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    $button = '<div class="form-check form-switch">
+                                <input type="checkbox" checked data-id="' . $query->id . '"
+                                class="form-check-input change-status" id="flexSwitchCheckDefault">
+                               </div>';
+                } else {
+                    $button = '<div class="form-check form-switch">
+                                <input type="checkbox" data-id="' . $query->id . '"
+                                class="form-check-input change-status" id="flexSwitchCheckDefault">
+                               </div>';
+                }
+                return $button;
+            })
+            ->rawColumns(['action', 'status'])
             ->setRowId('id');
     }
 
@@ -29,7 +58,7 @@ class VendorProductVariantDataTable extends DataTable
      */
     public function query(ProductVariant $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->where('product_id', request()->product_id)->newQuery();
     }
 
     /**
@@ -38,20 +67,20 @@ class VendorProductVariantDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('vendorproductvariant-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('vendorproductvariant-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -60,15 +89,14 @@ class VendorProductVariantDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id')->width(80),
+            Column::make('name'),
+            Column::make('status'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(400)
+                ->addClass('text-center'),
         ];
     }
 
