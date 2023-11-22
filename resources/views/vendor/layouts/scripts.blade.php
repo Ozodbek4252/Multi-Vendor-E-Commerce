@@ -38,6 +38,7 @@
 <script src="{{ asset('backend/assets/modules/moment.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('backend/assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <!--main/custom js-->
 <script src="{{ asset('frontend/js/main.js') }}"></script>

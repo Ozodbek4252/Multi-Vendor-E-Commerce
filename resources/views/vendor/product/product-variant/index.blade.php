@@ -2,8 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-xl-9 col-xxl-10 col-lg-9 ms-auto">
-            <a href="{{ route('vendor.products.index') }}"
-                class="btn btn-secondary mb-4">
+            <a href="{{ route('vendor.products.index') }}" class="btn btn-secondary mb-4">
                 <i class="fas fa-long-arrow-left"></i> Back
             </a>
             <div class="dashboard_content mt-2 mt-md-0">
@@ -30,14 +29,14 @@
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 
-    {{--  <script>
+    <script>
         $(document).ready(function() {
             $('body').on('click', '.change-status', function() {
                 let isChecked = $(this).is(':checked');
                 let id = $(this).data('id');
 
                 $.ajax({
-                    url: "{{ route('admin.product.change-status') }}",
+                    url: "{{ route('vendor.products-variant.change-status') }}",
                     method: 'PUT',
                     data: {
                         status: isChecked,
@@ -52,5 +51,5 @@
                 });
             })
         });
-    </script>  --}}
+    </script>
 @endpush
