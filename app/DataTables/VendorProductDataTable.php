@@ -28,21 +28,6 @@ class VendorProductDataTable extends DataTable
                 $deleteBtn = "<a href='" . route('vendor.products.destroy', $query->id) .
                     "' class='btn btn-danger delete-item'><i class='far fa-trash-alt'></i></a>";
 
-                // $moreBtn = '
-                //     <div class="dropdown dropleft d-inline ml-1">
-                //         <button class="btn btn-primary dropdown-toggle" type="button"
-                //             id="dropdownMenuButton2" data-toggle="dropdown"
-                //             aria-haspopup="true" aria-expanded="false">
-                //             <i class="fas fa-cog"></i>
-                //         </button>
-                //         <div class="dropdown-menu" x-placement="bottom-start"
-                //             style="position: absolute; transform: translate3d(0px, 28px, 0px);
-                //             top: 0px; left: 0px; will-change: transform;">
-                //             <a class="dropdown-item has-icon" href="' . route('admin.products-image-gallery.index', ['product_id' => $query->id]) .  '"><i class="far fa-heart"></i>Image Gallery</a>
-                //             <a class="dropdown-item has-icon" href="' . route('admin.products-variant.index', ['product_id' => $query->id]) . '"><i class="far fa-heart"></i>Variants</a>
-                //         </div>
-                //     </div>
-                //     ';
                 $moreBtn = '<div class="btn-group dropstart" style="margin-left: 4px;">
                             <button type="button" class="btn btn-secondary fropdown-toggle"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +42,7 @@ class VendorProductDataTable extends DataTable
                                 </li>
                                 <li>
                                     <a class="dropdown-item has-icon"
-                                        href="' . route('admin.products-variant.index', ['product_id' => $query->id]) . '">
+                                        href="' . route('vendor.products-variant.index', ['product_id' => $query->id]) . '">
                                         Variants
                                     </a>
                                 </li>
